@@ -1,9 +1,16 @@
-import { FC, memo, useState } from 'react'
+import { FC, memo, useState, useRef, useEffect } from 'react'
 import { EditorProps } from './editor.model'
 import * as S from './editor.styles'
 
 const Editor: FC<EditorProps> = memo(({ initialHtml = '' }) => {
+  const editableRef = useRef<HTMLDivElement>(null)
   const [html, setHtml] = useState(initialHtml)
+
+  useEffect(() => {
+    if (editableRef?.current) {
+      editableRef?.current.setAttribute('spellcheck', 'false')
+    }
+  }, [editableRef])
 
   return (
     <S.Editor>
@@ -19,11 +26,11 @@ const Editor: FC<EditorProps> = memo(({ initialHtml = '' }) => {
         </S.Actions>
       </S.EditorHeader>
       <S.Editable
+        innerRef={editableRef}
         tagName="pre"
-        html={html} // innerHTML of the editable div
-        // disabled={!this.state.editable} // use true to disable edition
-        onChange={(e) => setHtml(e.target.value)} // handle innerHTML change
-        // onBlur={this.sanitize}
+        html={html}
+        onChange={(e) => setHtml(e.target.value)}
+        {...{ spellcheck: false }}
       />
     </S.Editor>
   )

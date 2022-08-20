@@ -5,19 +5,6 @@ export const Editor = styled.div`
   flex: 0 1 100%;
   height: 100vh;
 `
-
-export const Editable = styled(ContentEditable)`
-  width: 100%;
-  height: 100%;
-  padding: 32px;
-  outline: none;
-  background-color: #212121;
-  color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  letter-spacing: 1px;
-`
-
 export const EditorHeader = styled.header`
   display: flex;
   align-items: center;
@@ -76,4 +63,17 @@ export const Button = styled.button<{ kind?: 'default' | 'danger' }>`
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+`
+
+export const Editable = styled(ContentEditable)`
+  width: 100%;
+  height: calc(100% - 48px);
+  padding: 32px;
+  outline: none;
+  background-color: #212121;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  overflow-y: auto;
 `
