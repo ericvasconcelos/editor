@@ -1,6 +1,6 @@
-import { FC, memo, useCallback, useState } from 'react'
+import { FC, memo, useCallback, useState, useEffect } from 'react'
 import { ChevronLeft } from 'assets/icons'
-import data from '../db.json'
+import { editorService } from 'services'
 import Icon from './Icon'
 import { FileListProps, FileListItemProps } from './sidebar.model'
 import * as S from './sidebar.styles'
@@ -41,8 +41,21 @@ const FileList: FC<FileListProps> = memo(({ data, open = true }) => (
 FileList.displayName = 'FileList'
 
 const Sidebar = memo(() => {
-  const { filetree } = data
+  const [filetree, setFiletree] = useState([])
   const [isOpen, setIsOpen] = useState<boolean>(true)
+
+  const handleGetFiletree = useCallback(async () => {
+    try {
+      const response = await editorService.getFiletree()
+      setFiletree(response)
+    } catch (err) {
+      console.log(err)
+    }
+  }, [])
+
+  useEffect(() => {
+    handleGetFiletree()
+  }, [handleGetFiletree])
 
   return (
     <S.Sidebar open={isOpen}>

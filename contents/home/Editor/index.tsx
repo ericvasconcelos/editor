@@ -8,7 +8,7 @@ const Editor: FC<EditorProps> = memo(({ initialHtml = '' }) => {
 
   useEffect(() => {
     if (editableRef?.current) {
-      editableRef?.current.setAttribute('spellcheck', 'false')
+      editableRef?.current.setAttribute('spellCheck', 'false')
     }
   }, [editableRef])
 
@@ -25,13 +25,7 @@ const Editor: FC<EditorProps> = memo(({ initialHtml = '' }) => {
           <S.Button kind="danger">Delete</S.Button>
         </S.Actions>
       </S.EditorHeader>
-      <S.Editable
-        innerRef={editableRef}
-        tagName="pre"
-        html={html}
-        onChange={(e) => setHtml(e.target.value)}
-        {...{ spellcheck: false }}
-      />
+      <S.Editable innerRef={editableRef} tagName="pre" html={html} onChange={(e) => setHtml(e.target.value)} />
     </S.Editor>
   )
 })
