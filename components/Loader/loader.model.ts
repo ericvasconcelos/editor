@@ -1,3 +1,5 @@
+import { SimpleInterpolation } from 'styled-components'
+
 export type LoaderKind = 'inverse' | 'dark'
 export type LoaderSize = 'default' | 'small'
 
@@ -12,5 +14,5 @@ export type LoaderStyleProps = {
 }
 
 export type getKindProps = {
-  [key in LoaderKind]: string
+  [key in LoaderKind]: string | SimpleInterpolation
 }
