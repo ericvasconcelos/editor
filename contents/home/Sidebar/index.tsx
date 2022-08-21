@@ -11,10 +11,12 @@ import * as S from './sidebar.styles'
 const Sidebar: FC = memo(() => {
   const { removedFileId, removeFileId } = useContext(EditorContext) as EditorContextType
   const [filetree, setFiletree] = useState<FileListItemArrProps[]>()
-  const [error, setError] = useState<string>()
+  const [error, setError] = useState<string>('')
   const [isOpen, setIsOpen] = useState<boolean>(true)
 
   const handleGetFiletree = useCallback(async () => {
+    setError('')
+
     try {
       const response = await editorService.getFiletree()
       setFiletree(response)
