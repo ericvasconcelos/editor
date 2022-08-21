@@ -6,7 +6,7 @@ const { borders, color, font, space } = tokens
 export const Editor = styled.div`
   flex: 0 1 100%;
   height: 100vh;
-  background-color: ${color.black};
+  background-color: ${color.darker};
 `
 export const EditorHeader = styled.header`
   display: flex;
@@ -29,7 +29,7 @@ export const FileName = styled.div`
   height: ${space.xl2};
   padding: 0 ${space.sm};
   border-radius: ${borders.radius.lg} ${borders.radius.lg} 0 0;
-  background-color: ${color.black};
+  background-color: ${color.darker};
   color: ${color.green};
   font-size: ${font.size.sm};
   font-weight: ${font.weight.medium};
@@ -73,7 +73,7 @@ export const Editable = styled(ContentEditable)`
   height: calc(100% - ${space.xl3});
   padding: ${space.xl};
   outline: none;
-  background-color: ${color.black};
+  background-color: ${color.darker};
   color: ${color.white};
   font-family: Arial, Helvetica, sans-serif;
   font-size: ${font.size.md};
