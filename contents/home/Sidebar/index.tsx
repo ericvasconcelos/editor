@@ -1,11 +1,14 @@
-import { FC, memo, useCallback, useState, useEffect } from 'react'
+import { FC, memo, useContext, useCallback, useState, useEffect } from 'react'
 import { ChevronLeft } from 'assets/icons'
 import { Loader } from 'components'
+import { EditorContext } from 'context/editorContext'
 import { editorService } from 'services'
+import { EditorContextType } from 'types'
 import FileList from './FileList'
 import * as S from './sidebar.styles'
 
 const Sidebar: FC = memo(() => {
+  const { removedFileId, removeFileId } = useContext(EditorContext) as EditorContextType
   const [filetree, setFiletree] = useState([])
   const [isOpen, setIsOpen] = useState<boolean>(true)
 
@@ -21,6 +24,32 @@ const Sidebar: FC = memo(() => {
   useEffect(() => {
     handleGetFiletree()
   }, [handleGetFiletree])
+
+  const handleUpdateFiletree = useCallback(
+    async (id: number) => {
+      function recursiveRemove(list, fileId) {
+        return list
+          .map((item) => ({ ...item }))
+          .filter((item) => {
+            if ('children' in item) {
+              item.children = recursiveRemove(item.children, fileId)
+            }
+            return item.id !== fileId
+          })
+      }
+
+      const newFiletree = recursiveRemove(filetree, id)
+      setFiletree(newFiletree)
+      removeFileId(-1)
+    },
+    [filetree, removeFileId]
+  )
+
+  useEffect(() => {
+    if (removedFileId !== -1) {
+      handleUpdateFiletree(removedFileId)
+    }
+  }, [handleUpdateFiletree, removedFileId])
 
   return (
     <S.Sidebar open={isOpen}>

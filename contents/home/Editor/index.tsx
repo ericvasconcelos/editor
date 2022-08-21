@@ -13,14 +13,14 @@ const initialFile = {
 }
 
 const Editor: FC = memo(() => {
-  const { fileId, saveFileId } = useContext(EditorContext) as EditorContextType
+  const { fileId, saveFileId, removeFileId } = useContext(EditorContext) as EditorContextType
   const [loadingFile, setLoadingFile] = useState<boolean>(false)
   const [LoadingSave, setLoadingSave] = useState<boolean>(false)
   const [LoadingDelete, setLoadingDelete] = useState<boolean>(false)
   const [file, setFile] = useState<FileProps>(initialFile)
 
   const handleCloseFile = useCallback(async () => {
-    saveFileId(-1)
+    await saveFileId(-1)
     setFile(initialFile)
   }, [saveFileId])
 
@@ -57,12 +57,14 @@ const Editor: FC = memo(() => {
     try {
       setLoadingDelete(true)
       await editorService.deleteFile(fileId)
+      await removeFileId(fileId)
     } catch (err) {
       console.log(err)
     } finally {
       setLoadingDelete(false)
+      handleCloseFile()
     }
-  }, [fileId])
+  }, [fileId, removeFileId, handleCloseFile])
 
   return (
     <S.Editor>
