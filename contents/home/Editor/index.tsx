@@ -1,4 +1,5 @@
 import { FC, memo, useContext, useState, useEffect, useCallback } from 'react'
+import { Loader } from 'components'
 import { EditorContext } from 'context/editorContext'
 import { editorService } from 'services'
 import { EditorContextType } from 'types'
@@ -7,6 +8,7 @@ import * as S from './editor.styles'
 
 const Editor: FC = memo(() => {
   const { fileId } = useContext(EditorContext) as EditorContextType
+  const [loadingFile, setLoadingFile] = useState<boolean>(false)
   const [file, setFile] = useState<FileProps>({
     id: -1,
     name: '',
@@ -17,10 +19,13 @@ const Editor: FC = memo(() => {
     if (id === -1) return
 
     try {
+      setLoadingFile(true)
       const response = await editorService.getFile(id)
       setFile(response)
     } catch (err) {
       console.log(err)
+    } finally {
+      setLoadingFile(false)
     }
   }, [])
 
@@ -65,12 +70,19 @@ const Editor: FC = memo(() => {
           </S.Actions>
         )}
       </S.EditorHeader>
-      <S.Editable
-        tagName="pre"
-        html={file?.content || ''}
-        onChange={(e) => setFile((oldState) => ({ ...oldState, content: e.target.value }))}
-        {...{ spellCheck: false }}
-      />
+
+      {loadingFile ? (
+        <S.Wrapper>
+          <Loader />
+        </S.Wrapper>
+      ) : (
+        <S.Editable
+          tagName="pre"
+          html={file?.content || ''}
+          onChange={(e) => setFile((oldState) => ({ ...oldState, content: e.target.value }))}
+          {...{ spellCheck: false }}
+        />
+      )}
     </S.Editor>
   )
 })

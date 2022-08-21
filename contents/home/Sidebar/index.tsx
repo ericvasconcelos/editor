@@ -1,5 +1,6 @@
 import { FC, memo, useCallback, useState, useEffect } from 'react'
 import { ChevronLeft } from 'assets/icons'
+import { Loader } from 'components'
 import { editorService } from 'services'
 import FileList from './FileList'
 import * as S from './sidebar.styles'
@@ -32,7 +33,13 @@ const Sidebar: FC = memo(() => {
       </S.ToggleButton>
       <S.SidebarHeader>Files</S.SidebarHeader>
       <S.Files>
-        <FileList data={filetree} />
+        {filetree && filetree.length > 0 ? (
+          <FileList data={filetree} />
+        ) : (
+          <S.Wrapper>
+            <Loader />
+          </S.Wrapper>
+        )}
       </S.Files>
     </S.Sidebar>
   )

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const Editor = styled.div`
   flex: 0 1 100%;
   height: 100vh;
+  background-color: #212121;
 `
 export const EditorHeader = styled.header`
   display: flex;
@@ -67,6 +68,13 @@ export const Button = styled.button<{ kind?: 'default' | 'danger' }>`
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+`
+
+export const Wrapper = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const Editable = styled(ContentEditable)`

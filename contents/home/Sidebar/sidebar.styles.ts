@@ -30,7 +30,7 @@ export const ToggleButton = styled.button<{ open: boolean }>`
 export const SidebarHeader = styled.header`
   display: flex;
   align-items: center;
-  min-height: 48px;
+  height: 48px;
   padding-left: 16px;
   padding-right: 16px;
   border-bottom: 1px solid #343434;
@@ -42,8 +42,16 @@ export const SidebarHeader = styled.header`
 `
 
 export const Files = styled.div`
+  height: calc(100% - 48px);
   padding: 16px 8px;
   overflow-y: auto;
+`
+
+export const Wrapper = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const FileList = styled.ul<{ open: boolean }>`
