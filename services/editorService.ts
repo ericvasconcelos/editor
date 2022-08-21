@@ -10,7 +10,7 @@ export const editorService = {
     })
   },
   async getFile(id) {
-    return HttpClient(`${process.env.NEXT_PUBLIC_BACKEND_URL}/files/${id}`, {
+    return HttpClient(`${process.env.NEXT_PUBLIC_API}/files/${id}`, {
       method: 'GET'
     }).then((response) => {
       if (!response.ok) throw new Error('Não autorizado')
@@ -33,23 +33,3 @@ export const editorService = {
     })
   }
 }
-
-// Use
-// try {
-//   const session = await authService.getSession(ctx)
-//   const modifiedCtx = {
-//     ...ctx,
-//     req: {
-//       ...ctx.req,
-//       session
-//     }
-//   }
-//   return funcao(modifiedCtx)
-// } catch (err) {
-//   return {
-//     redirect: {
-//       permanent: false,
-//       destination: '/login-auth?error=401'
-//     }
-//   }
-// }
