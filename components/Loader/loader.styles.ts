@@ -48,7 +48,7 @@ export const Ellipsis = styled.div<LoaderStyleProps>`
     width: 0.8125rem;
     height: 0.8125rem;
     border-radius: ${borders.radius.circle};
-    background: ${({ kind }) => getKind[kind]};
+    background-color: ${({ kind }) => getKind[kind]};
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
 
     &:nth-child(1) {
