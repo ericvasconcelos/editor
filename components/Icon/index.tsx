@@ -1,9 +1,9 @@
 import { FC, memo } from 'react'
 import { FolderClosed, FolderOpen, Java, File } from 'assets/icons'
-import { IconProps } from './sidebar.model'
-import * as S from './sidebar.styles'
+import { IconProps } from './icon.model'
+import * as S from './icon.styles'
 
-const Icon: FC<IconProps> = memo(({ isDirectory, open, name }) => {
+export const Icon: FC<IconProps> = memo(({ isDirectory, open, name }) => {
   if (isDirectory && !open) {
     return (
       <S.Icon>
@@ -36,5 +36,3 @@ const Icon: FC<IconProps> = memo(({ isDirectory, open, name }) => {
 })
 
 Icon.displayName = 'Icon'
-
-export default Icon
