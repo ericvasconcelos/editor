@@ -54,22 +54,6 @@ export const Actions = styled.div`
   gap: 32px;
 `
 
-const getKind = {
-  default: '#651fff',
-  danger: '#D32F2F'
-}
-
-export const Button = styled.button<{ kind?: 'default' | 'danger' }>`
-  all: unset;
-  padding: 4px 12px;
-  border-radius: 4px;
-  background-color: ${({ kind }) => getKind[kind || 'default']};
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-`
-
 export const Wrapper = styled.div`
   height: 100%;
   display: flex;

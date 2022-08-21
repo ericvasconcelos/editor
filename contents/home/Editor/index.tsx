@@ -1,5 +1,5 @@
 import { FC, memo, useContext, useState, useEffect, useCallback } from 'react'
-import { Loader } from 'components'
+import { Button, Loader } from 'components'
 import { EditorContext } from 'context/editorContext'
 import { editorService } from 'services'
 import { EditorContextType } from 'types'
@@ -63,10 +63,10 @@ const Editor: FC = memo(() => {
 
         {fileId >= 0 && (
           <S.Actions>
-            <S.Button onClick={handleUpdateFile}>Save</S.Button>
-            <S.Button kind="danger" onClick={handleDeleteFile}>
+            <Button onClick={handleUpdateFile}>Save</Button>
+            <Button kind="danger" onClick={handleDeleteFile}>
               Delete
-            </S.Button>
+            </Button>
           </S.Actions>
         )}
       </S.EditorHeader>
