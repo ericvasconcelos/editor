@@ -1,27 +1,29 @@
 import styled from 'styled-components'
+import { tokens } from 'styles/theme'
+const { borders, color, font, space } = tokens
 
 export const Sidebar = styled.section<{ open: boolean }>`
   position: relative;
   flex: 0 0 auto;
   height: 100vh;
-  width: ${({ open }) => (open ? '300px' : '24px')};
-  background-color: #151515;
+  width: ${({ open }) => (open ? '300px' : space.lg)};
+  background-color: ${color.black};
   transition: width 0.3s ease;
 `
 
 export const ToggleButton = styled.button<{ open: boolean }>`
   all: unset;
   position: absolute;
-  top: 8px;
-  right: -12px;
+  top: ${space.xs};
+  right: -${space.sm};
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 100%;
-  border: 1px solid #e0e0e0;
-  background-color: #fff;
+  width: ${space.lg};
+  height: ${space.lg};
+  border-radius: ${borders.radius.circle};
+  border: ${borders.sizes.sm} solid ${color.lighter};
+  background-color: ${color.white};
   transform: rotate(${({ open }) => (open ? '0' : '-180deg')});
   transition: all 0.3s ease;
   cursor: pointer;
@@ -30,20 +32,20 @@ export const ToggleButton = styled.button<{ open: boolean }>`
 export const SidebarHeader = styled.header`
   display: flex;
   align-items: center;
-  height: 48px;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-bottom: 1px solid #343434;
-  border-top-color: #343434;
-  border-right-color: #343434;
-  border-left-color: #343434;
-  color: #e6e6e6;
-  font-weight: bold;
+  height: ${space.xl3};
+  padding-left: ${space.md};
+  padding-right: ${space.md};
+  border-bottom: ${borders.sizes.sm} solid ${color.darker};
+  border-top-color: ${color.darker};
+  border-right-color: ${color.darker};
+  border-left-color: ${color.darker};
+  color: ${color.lighter};
+  font-weight: ${font.weight.bold};
 `
 
 export const Files = styled.div`
-  height: calc(100% - 48px);
-  padding: 16px 8px;
+  height: calc(100% - ${space.xl3});
+  padding: ${space.md} ${space.xs};
   overflow-y: auto;
 `
 
@@ -56,21 +58,21 @@ export const Wrapper = styled.div`
 
 export const FileList = styled.ul<{ open: boolean }>`
   display: ${({ open }) => (open ? 'block' : 'none')};
-  padding-left: 8px;
+  padding-left: ${space.xs};
   margin: 0;
 `
 
 export const FileListItem = styled.li`
-  margin-bottom: 6px;
-  font-size: 14px;
-  color: #e6e6e6;
+  margin-bottom: ${space.xs};
+  font-size: ${font.size.sm};
+  color: ${color.lighter};
 `
 
 export const FileListItemName = styled.button`
   all: unset;
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: ${space.xs};
   cursor: pointer;
 `
 
@@ -78,7 +80,7 @@ export const Icon = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 12px;
-  height: 12px;
-  margin-right: 4px;
+  width: ${space.sm};
+  height: ${space.sm};
+  margin-right: ${space.xs2};
 `

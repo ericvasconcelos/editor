@@ -1,18 +1,20 @@
 import ContentEditable from 'react-contenteditable'
 import styled from 'styled-components'
+import { tokens } from 'styles/theme'
+const { borders, color, font, space } = tokens
 
 export const Editor = styled.div`
   flex: 0 1 100%;
   height: 100vh;
-  background-color: #212121;
+  background-color: ${color.black};
 `
 export const EditorHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 48px;
-  background-color: #424242;
-  padding: 0 16px 0 32px;
+  height: ${space.xl3};
+  background-color: ${color.gray};
+  padding: 0 ${space.md} 0 ${space.xl};
 `
 
 export const FileTab = styled.div`
@@ -24,13 +26,13 @@ export const FileTab = styled.div`
 export const FileName = styled.div`
   display: flex;
   align-items: center;
-  height: 40px;
-  padding: 0 12px;
-  border-radius: 8px 8px 0 0;
-  background-color: #212121;
-  color: #00e676;
-  font-size: 14px;
-  font-weight: 500;
+  height: ${space.xl2};
+  padding: 0 ${space.sm};
+  border-radius: ${borders.radius.lg} ${borders.radius.lg} 0 0;
+  background-color: ${color.black};
+  color: ${color.green};
+  font-size: ${font.size.sm};
+  font-weight: ${font.weight.medium};
 `
 
 export const Close = styled.button`
@@ -38,12 +40,12 @@ export const Close = styled.button`
   display: flex;
   align-items: center;
   align-self: center;
-  width: 12px;
-  height: 12px;
-  margin-left: 6px;
-  color: #fff;
-  font-size: 22px;
-  font-weight: 100;
+  width: ${space.sm};
+  height: ${space.sm};
+  margin-left: ${space.xs};
+  color: ${color.white};
+  font-size: ${font.size.lg};
+  font-weight: ${font.weight.light};
   cursor: pointer;
 `
 
@@ -51,7 +53,7 @@ export const Actions = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 32px;
+  gap: ${space.xl};
 `
 
 export const Wrapper = styled.div`
@@ -63,13 +65,13 @@ export const Wrapper = styled.div`
 
 export const Editable = styled(ContentEditable)`
   width: 100%;
-  height: calc(100% - 48px);
-  padding: 32px;
+  height: calc(100% - ${space.xl3});
+  padding: ${space.xl};
   outline: none;
-  background-color: #212121;
-  color: #fff;
+  background-color: ${color.black};
+  color: ${color.white};
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: ${font.size.md};
   letter-spacing: 1px;
   overflow-y: auto;
   cursor: auto;

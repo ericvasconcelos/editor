@@ -8,9 +8,7 @@ const borders = {
   radius: {
     sm: '0.125rem',
     md: '0.25rem',
-    lg: '0.625rem',
-    xl: '1rem',
-    pill: '15rem',
+    lg: '0.5rem',
     circle: '50%'
   }
 }

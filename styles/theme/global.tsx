@@ -28,18 +28,18 @@ export default createGlobalStyle`
     text-size-adjust: 100%;
     cursor: default;
     font-size: 16px;
-    line-height: ${font.lineHeight.md};
+    line-height: 1.2;
     word-break: break-word;
   }
 
   body {
-    background-color: ${color.grayscale.white};
-    color: ${color.grayscale.black};
-    font-family: ${font.family.text};
+    background-color: ${color.white};
+    color: ${color.black};
+    font-family: Arial, Helvetica, sans-serif;
     font-feature-settings: "kern" 1, "liga" 1;
-    font-size: ${font.size.root};
+    font-size: ${font.size.md};
     font-weight: ${font.weight.normal};
-    line-height: ${font.lineHeight.md};
+    line-height: 1.2;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -59,46 +59,16 @@ export default createGlobalStyle`
   h5,
   h6 {
     color: inherit;
-    font-family: ${font.family.heading};
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: ${font.weight.bold};
     margin-bottom: ${space.md};
     margin-top: 0;
     text-rendering: optimizeLegibility;
   }
 
-  h1 {
-    font-size: ${font.size.h1};
-    line-height: ${font.lineHeight.lg};
-  }
-
-  h2 {
-    font-size: ${font.size.h2};
-    line-height: ${font.lineHeight.lg};
-  }
-
-  h3 {
-    font-size: ${font.size.h3};
-    line-height: ${font.lineHeight.lg};
-  }
-
-  h4 {
-    font-size: ${font.size.h4};
-    line-height: ${font.lineHeight.lg};
-  }
-
-  h5 {
-    font-size: ${font.size.h5};
-    line-height: ${font.lineHeight.lg};
-  }
-
-  h6 {
-    font-size: ${font.size.h6};
-    line-height: ${font.lineHeight.lg};
-  }
-
   a {
     background-color: transparent;
-    color: ${color.primary.pure};
+    color: ${color.primary};
     text-decoration: none;
     touch-action: manipulation;
 
@@ -122,7 +92,7 @@ export default createGlobalStyle`
     border-left: none;
     border-right: none;
     box-sizing: content-box;
-    color: ${color.grayscale.lighter};
+    color: ${color.lighter};
     height: 0;
     overflow: visible;
   }
@@ -160,7 +130,7 @@ export default createGlobalStyle`
 
   pre {
     font-family: monospace;
-    font-size: ${font.size.root};
+    font-size: ${font.size.md};
   }
 
   abbr[title] {
@@ -175,14 +145,14 @@ export default createGlobalStyle`
   }
 
   small {
-    font-size: ${font.size.xsmall};
+    font-size: ${font.size.sm};
   }
 
   code,
   kbd,
   samp {
     font-family: monospace;
-    font-size: ${font.size.root};
+    font-size: ${font.size.md};
   }
 
   sub,
@@ -192,14 +162,14 @@ export default createGlobalStyle`
   }
 
   ::-moz-selection {
-    background-color: ${color.primary.dark};
-    color: ${color.grayscale.white};
+    background-color: ${color.dark};
+    color: ${color.white};
     text-shadow: none;
   }
 
   ::selection {
-    background-color: ${color.primary.dark};
-    color: ${color.grayscale.white};
+    background-color: ${color.dark};
+    color: ${color.white};
     text-shadow: none;
   }
 
@@ -263,7 +233,7 @@ export default createGlobalStyle`
   button {
     overflow: visible;
     text-transform: none;
-    border-color: ${color.grayscale.lighter};
+    border-color: ${color.lighter};
     border-style: solid;
     border-width: ${borders.sizes.sm};
     touch-action: manipulation;
@@ -271,10 +241,10 @@ export default createGlobalStyle`
 
   button {
     appearance: button;
-    background-color: ${color.grayscale.white};
-    border-color: ${color.primary.pure};
+    background-color: ${color.white};
+    border-color: ${color.pure};
     border-radius: ${borders.radius.md};
-    color: ${color.primary.pure};
+    color: ${color.pure};
     cursor: pointer;
     text-align: center;
     padding: 0;
@@ -348,9 +318,9 @@ export default createGlobalStyle`
   }
 
   dialog {
-    background-color: ${color.grayscale.white};
-    border: ${color.grayscale.lighter};
-    color: ${color.grayscale.white};
+    background-color: ${color.white};
+    border: ${color.lighter};
+    color: ${color.white};
     display: block;
     height: fit-content;
     left: 0;
@@ -433,7 +403,7 @@ export default createGlobalStyle`
   select,
   textarea,
   fieldset {
-    border-color: ${color.grayscale.lighter};
+    border-color: ${color.lighter};
     border-style: solid;
     border-width: ${borders.sizes.sm};
   }
@@ -441,7 +411,7 @@ export default createGlobalStyle`
   input,
   select {
     border-radius: ${borders.radius.md};
-    background-color: ${color.grayscale.white};
+    background-color: ${color.white};
     padding: 0.4375rem;
     height: 2.5rem;
   }
@@ -466,18 +436,18 @@ export default createGlobalStyle`
 
   input:disabled,
   select:disabled {
-    background-color: ${color.grayscale.lighter};
-    color: ${color.grayscale.dark};
+    background-color: ${color.lighter};
+    color: ${color.dark};
   }
 
   input[readonly] {
-    background-color: ${color.warning.pale};
-    color: ${color.grayscale.dark};
+    background-color: ${color.white};
+    color: ${color.dark};
   }
 
   textarea {
     border-radius: ${borders.radius.md};
-    background-color: ${color.grayscale.white};
+    background-color: ${color.white};
     height: 8rem;
     overflow: auto;
     padding: 0.4375rem;
