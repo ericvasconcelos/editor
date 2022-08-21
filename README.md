@@ -17,7 +17,7 @@ Give it your best shot!
 
 Check https://app.swaggerhub.com/apis/john-veezoo/Online-Editor/1.0.0
 
-GET /filetree 
+GET /filetree
 
 GET /files/{fileId}
 
@@ -35,10 +35,9 @@ Example: https://my-json-server.typicode.com/open-veezoo/editor/filetree
 
 Please send your code as a Github repo link to jp@veezoo.com with the Subject: 'Veezoo Assignment: YOUR_NAME'
 
+## Getting Started
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
 
 First, run the development server:
 
