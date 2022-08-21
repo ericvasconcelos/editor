@@ -4,11 +4,12 @@ export type FileProps = {
 }
 
 export interface FileListItemProps extends FileProps {
+  id: number
   list?: FileListItemProps[]
 }
 
 export interface FileListItemArrProps extends FileProps {
-  id?: number
+  id: number
   children?: FileListItemProps[]
 }
 

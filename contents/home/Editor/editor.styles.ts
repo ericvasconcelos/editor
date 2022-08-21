@@ -11,13 +11,18 @@ export const EditorHeader = styled.header`
   justify-content: space-between;
   min-height: 48px;
   background-color: #424242;
-  padding: 0 16px;
+  padding: 0 16px 0 32px;
+`
+
+export const FileTab = styled.div`
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
 `
 
 export const FileName = styled.div`
   display: flex;
   align-items: center;
-  align-self: flex-end;
   height: 40px;
   padding: 0 12px;
   border-radius: 8px 8px 0 0;
@@ -53,7 +58,6 @@ const getKind = {
   danger: '#D32F2F'
 }
 
-// #D32F2F
 export const Button = styled.button<{ kind?: 'default' | 'danger' }>`
   all: unset;
   padding: 4px 12px;
@@ -76,4 +80,5 @@ export const Editable = styled(ContentEditable)`
   font-size: 16px;
   letter-spacing: 1px;
   overflow-y: auto;
+  cursor: auto;
 `

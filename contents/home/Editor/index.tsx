@@ -1,31 +1,76 @@
-import { FC, memo, useState, useRef, useEffect } from 'react'
-import { EditorProps } from './editor.model'
+import { FC, memo, useContext, useState, useEffect, useCallback } from 'react'
+import { EditorContext } from 'context/editorContext'
+import { editorService } from 'services'
+import { EditorContextType } from 'types'
+import { FileProps } from './editor.model'
 import * as S from './editor.styles'
 
-const Editor: FC<EditorProps> = memo(({ initialHtml = '' }) => {
-  const editableRef = useRef<HTMLDivElement>(null)
-  const [html, setHtml] = useState(initialHtml)
+const Editor: FC = memo(() => {
+  const { fileId } = useContext(EditorContext) as EditorContextType
+  const [file, setFile] = useState<FileProps>({
+    id: -1,
+    name: '',
+    content: ''
+  })
+
+  const handleGetFile = useCallback(async (id: number) => {
+    if (id === -1) return
+
+    try {
+      const response = await editorService.getFile(id)
+      setFile(response)
+    } catch (err) {
+      console.log(err)
+    }
+  }, [])
 
   useEffect(() => {
-    if (editableRef?.current) {
-      editableRef?.current.setAttribute('spellCheck', 'false')
+    handleGetFile(fileId)
+  }, [handleGetFile, fileId])
+
+  const handleUpdateFile = useCallback(async () => {
+    try {
+      await editorService.updateFile(file)
+    } catch (err) {
+      console.log(err)
     }
-  }, [editableRef])
+  }, [file])
+
+  const handleDeleteFile = useCallback(async () => {
+    try {
+      await editorService.deleteFile(fileId)
+    } catch (err) {
+      console.log(err)
+    }
+  }, [fileId])
 
   return (
     <S.Editor>
       <S.EditorHeader>
-        <S.FileName>
-          Hello.java
-          <S.Close aria-label="Close">×</S.Close>
-        </S.FileName>
+        <S.FileTab>
+          {file?.name && (
+            <S.FileName>
+              {file?.name}
+              <S.Close aria-label="Close">×</S.Close>
+            </S.FileName>
+          )}
+        </S.FileTab>
 
-        <S.Actions>
-          <S.Button>Save</S.Button>
-          <S.Button kind="danger">Delete</S.Button>
-        </S.Actions>
+        {fileId >= 0 && (
+          <S.Actions>
+            <S.Button onClick={handleUpdateFile}>Save</S.Button>
+            <S.Button kind="danger" onClick={handleDeleteFile}>
+              Delete
+            </S.Button>
+          </S.Actions>
+        )}
       </S.EditorHeader>
-      <S.Editable innerRef={editableRef} tagName="pre" html={html} onChange={(e) => setHtml(e.target.value)} />
+      <S.Editable
+        tagName="pre"
+        html={file?.content || ''}
+        onChange={(e) => setFile((oldState) => ({ ...oldState, content: e.target.value }))}
+        {...{ spellCheck: false }}
+      />
     </S.Editor>
   )
 })

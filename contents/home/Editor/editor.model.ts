@@ -1,3 +1,5 @@
-export type EditorProps = {
-  initialHtml?: string
+export type FileProps = {
+  id: number
+  name: string
+  content: string
 }
