@@ -49,6 +49,10 @@ export const Files = styled.div`
   overflow-y: auto;
 `
 
+export const Error = styled.p`
+  color: ${color.danger};
+`
+
 export const Wrapper = styled.div`
   height: 100%;
   display: flex;

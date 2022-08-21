@@ -14,6 +14,7 @@ const initialFile = {
 
 const Editor: FC = memo(() => {
   const { fileId, saveFileId, removeFileId } = useContext(EditorContext) as EditorContextType
+  const [error, setError] = useState<string>()
   const [loadingFile, setLoadingFile] = useState<boolean>(false)
   const [LoadingSave, setLoadingSave] = useState<boolean>(false)
   const [LoadingDelete, setLoadingDelete] = useState<boolean>(false)
@@ -30,9 +31,10 @@ const Editor: FC = memo(() => {
     try {
       setLoadingFile(true)
       const response = await editorService.getFile(id)
+      console.log(response)
       setFile(response)
     } catch (err) {
-      console.log(err)
+      setError((err as Error).message)
     } finally {
       setLoadingFile(false)
     }
@@ -47,7 +49,7 @@ const Editor: FC = memo(() => {
       setLoadingSave(true)
       await editorService.updateFile(file)
     } catch (err) {
-      console.log(err)
+      setError((err as Error).message)
     } finally {
       setLoadingSave(false)
     }
@@ -59,7 +61,7 @@ const Editor: FC = memo(() => {
       await editorService.deleteFile(fileId)
       await removeFileId(fileId)
     } catch (err) {
-      console.log(err)
+      setError((err as Error).message)
     } finally {
       setLoadingDelete(false)
       handleCloseFile()
@@ -80,7 +82,7 @@ const Editor: FC = memo(() => {
           )}
         </S.FileTab>
 
-        {fileId >= 0 && (
+        {file?.id >= 0 && (
           <S.Actions>
             <Button onClick={handleUpdateFile} isLoading={LoadingSave}>
               Save
@@ -91,6 +93,8 @@ const Editor: FC = memo(() => {
           </S.Actions>
         )}
       </S.EditorHeader>
+
+      {error && <S.Error>{error}</S.Error>}
 
       {loadingFile ? (
         <S.Wrapper>

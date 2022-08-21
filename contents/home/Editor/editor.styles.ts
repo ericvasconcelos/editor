@@ -56,6 +56,11 @@ export const Actions = styled.div`
   gap: ${space.xl};
 `
 
+export const Error = styled.p`
+  padding: ${space.sm} ${space.md};
+  color: ${color.danger};
+`
+
 export const Wrapper = styled.div`
   height: 100%;
   display: flex;

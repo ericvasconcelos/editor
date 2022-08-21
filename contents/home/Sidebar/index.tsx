@@ -5,11 +5,13 @@ import { EditorContext } from 'context/editorContext'
 import { editorService } from 'services'
 import { EditorContextType } from 'types'
 import FileList from './FileList'
+import { FileListItemArrProps } from './sidebar.model'
 import * as S from './sidebar.styles'
 
 const Sidebar: FC = memo(() => {
   const { removedFileId, removeFileId } = useContext(EditorContext) as EditorContextType
-  const [filetree, setFiletree] = useState([])
+  const [filetree, setFiletree] = useState<FileListItemArrProps[]>()
+  const [error, setError] = useState<string>()
   const [isOpen, setIsOpen] = useState<boolean>(true)
 
   const handleGetFiletree = useCallback(async () => {
@@ -17,7 +19,7 @@ const Sidebar: FC = memo(() => {
       const response = await editorService.getFiletree()
       setFiletree(response)
     } catch (err) {
-      console.log(err)
+      setError((err as Error).message)
     }
   }, [])
 
@@ -62,9 +64,9 @@ const Sidebar: FC = memo(() => {
       </S.ToggleButton>
       <S.SidebarHeader>Files</S.SidebarHeader>
       <S.Files>
-        {filetree && filetree.length > 0 ? (
-          <FileList data={filetree} />
-        ) : (
+        {error && !filetree && <S.Error>{error}</S.Error>}
+        {filetree && filetree?.length > 0 && <FileList data={filetree} />}
+        {!error && !filetree && (
           <S.Wrapper>
             <Loader />
           </S.Wrapper>

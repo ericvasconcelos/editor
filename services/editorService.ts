@@ -13,7 +13,7 @@ export const editorService = {
     return HttpClient(`${process.env.NEXT_PUBLIC_API}/files/${id}`, {
       method: 'GET'
     }).then((response) => {
-      if (!response.ok) throw new Error('Não autorizado')
+      if (!response.ok) throw new Error('Request problem, try again')
       return response.body
     })
   },
