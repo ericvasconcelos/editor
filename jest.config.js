@@ -13,15 +13,6 @@ const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/.jest/jestSetup.js'],
   bail: 1,
   clearMocks: true,
-  collectCoverage: true,
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80
-    }
-  },
   testMatch: ['**/*.test.(ts|tsx)'],
   testEnvironment: 'jest-environment-jsdom',
   moduleDirectories: ['node_modules', '<rootDir>/'],

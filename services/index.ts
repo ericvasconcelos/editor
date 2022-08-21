@@ -1,2 +1,2 @@
-export { editorService } from './editorService'
+export { editorService } from './editorSerivice'
 export { HttpClient } from './HttpClient'
